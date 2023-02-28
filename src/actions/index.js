@@ -9,6 +9,14 @@ export function fetchTodos() {
   };
 }
 
+export function fetchAddTodo(task) {
+  return function(dispatch) {
+    return axios.post("http://localhost:9091/api/todo",{"task":task}).then(({ data }) => {
+      dispatch(setTodos(data)); // dispatch an update to the task list
+    });
+  };
+}
+
 function setTodos(data) {
   return {
     type: FETCH_TODOS,
